@@ -1,3 +1,4 @@
+setwd("directory")
 
 # 1) What are the pass rates for each course? 
 
