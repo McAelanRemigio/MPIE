@@ -1,7 +1,14 @@
 # MPIE
 The Mathematics Persistence Through Inquiry and Equity Project
 
-NOTE: THIS REPO DOES NOT CONTAIN ANY ACTUAL STUDENT INFORMATION. All real and sensitive data are kept private.
+# Math Course Pass Rate Analysis
+
+This repository contains R scripts used to analyze course pass rates based on various factors.  
+
+## ⚠️ Data Privacy Notice  
+- This repository does **not** contain any actual student data.  
+- All datasets used are kept private and are **not included in this repository**.  
+- Example or synthetic datasets may be used for demonstration purposes.  
 
 https://crmse.sdsu.edu/directory/projects/mpie
 
