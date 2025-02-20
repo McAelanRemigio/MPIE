@@ -1,4 +1,4 @@
-setwd("/Users/mcaelan/Downloads/SDSURF")
+setwd("directory")
 
 library(dplyr)
 library(tidyr)
@@ -19,7 +19,6 @@ terms = passrate %>%
   filter(!is.na(course_grade)) %>%  # Remove missing grades
   mutate(pass = ifelse(course_grade %in% c("A", "B", "C"), 1, 0)) %>%
   group_by(EnrollmentTerm)
-# I have detected that there are no grades for section C. In the future, I will not be looking at section C columns.
 
 View(terms)
 summary(terms)
