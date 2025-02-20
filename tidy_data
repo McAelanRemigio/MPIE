@@ -1,4 +1,4 @@
-setwd("/Users/mcaelan/Downloads/SDSURF")
+setwd("directory")
 
 library(dplyr)
 library(tidyr)
