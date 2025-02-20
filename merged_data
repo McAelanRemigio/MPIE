@@ -1,5 +1,4 @@
-# set working directory
-setwd("/Users/mcaelan/Downloads/SDSURF")
+setwd("directory")
 
 # for efficient data handling 
 library(dplyr)
