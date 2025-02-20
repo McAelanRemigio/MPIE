@@ -11,10 +11,6 @@ print(file_list)
 merged_data = file_list %>% 
   lapply(function(file) {
     data <- read_csv(file)
-    # Convert the MPIE_SpringCount_B column to numeric for consistency
-    data$MPIE_FallCount_B <- as.numeric(data$MPIE_FallCount_B)
-    data$MPIE_SpringCount_B <- as.numeric(data$MPIE_SpringCount_B)
-    data$PlacementScore_BSTEM <- as.numeric(data$PlacementScore_BSTEM)
     return(data)
   }) %>% 
   bind_rows()
