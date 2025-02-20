@@ -1,0 +1,26 @@
+# set working directory
+setwd("/Users/mcaelan/Downloads/SDSURF")
+
+# for efficient data handling 
+library(dplyr)
+library(readr)
+
+# reading and merging CSV files automatically
+file_list = list.files(pattern = "*.csv")
+print(file_list)
+
+merged_data = file_list %>% 
+  lapply(function(file) {
+    data <- read_csv(file)
+    # Convert the MPIE_SpringCount_B column to numeric for consistency
+    data$MPIE_FallCount_B <- as.numeric(data$MPIE_FallCount_B)
+    data$MPIE_SpringCount_B <- as.numeric(data$MPIE_SpringCount_B)
+    data$PlacementScore_BSTEM <- as.numeric(data$PlacementScore_BSTEM)
+    return(data)
+  }) %>% 
+  bind_rows()
+# check merged data
+View(merged_data)
+
+# save merged data file
+write_csv(merged_data, "merged_data.csv")
