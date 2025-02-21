@@ -35,8 +35,3 @@ I am **McAelan Remigio**, an undergraduate data scientist contributing to this p
 - I joined the team in **2024** as a **first-year student**, working on **databases in Excel/Google Suite**.  
 - In **2025**, I expanded my work to **R programming** for data analysis.  
 - This repository showcases my **applications of R** in real-world research settings.  
-
----
-
-### **Final Thoughts**
-This version improves **readability, structure, and flow** while keeping your personal contribution clear. If you’d like, you can also add a **"How to Run the Code"** section explaining dependencies and execution steps.
