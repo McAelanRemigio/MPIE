@@ -32,6 +32,5 @@ This repository contains R scripts for **data analysis and visualization** of co
 
 ## **About Me**  
 I am **McAelan Remigio**, an undergraduate data scientist contributing to this project.  
-- I joined the team in **2024** as a **first-year student**, working on **databases in Excel/Google Suite**.  
-- In **2025**, I expanded my work to **R programming** for data analysis.  
+- I joined the team in **2024** as a **first-year student**, working on **databases in Excel/Google Suite**, then expanded my work to **R programming** for data science and data analysis.  
 - This repository showcases my **applications of R** in real-world research settings.  
