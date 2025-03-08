@@ -4,7 +4,7 @@ library(dplyr)
 library(tidyr)
 library(stringr)
 library(scales)
-
+ 
 View(tidy_data)
  
 # 1) What are the pass rates by instructor by MPIE
