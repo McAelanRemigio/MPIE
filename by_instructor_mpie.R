@@ -6,7 +6,7 @@ library(stringr)
 library(scales)
 
 View(tidy_data)
-
+ 
 # 1) What are the pass rates by instructor by MPIE
 
 passrate = select(tidy_data, InstructorName_A, InstructorName_B, EnrolledCourseGrade_A, EnrolledCourseGrade_B, MPIE_YN_A, MPIE_YN_B)
