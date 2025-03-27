@@ -7,28 +7,25 @@ library(scales)
 
 View(tidy_data)
 
-# 2) What are the pass rates for each term?
+# What are the pass rates for each term?
+data = data %>%
+  mutate(pass = ifelse(Grade %in% c("A", "B", "C", "P"), 1, 0))
 
-passrate = select(tidy_data, EnrollmentTerm, EnrolledCourseGrade_A, EnrolledCourseGrade_B, EnrolledCourseGrade_C)
-View(passrate)
+data = data %>% mutate(course_name = sub("-[A-Za-z0-9]+$", "", data$course_name))
 
-terms = passrate %>%
-  pivot_longer(cols = starts_with("EnrolledCourseGrade"),
-               names_to = "course_grade_column",
-               values_to = "course_grade") %>%
-  filter(!is.na(course_grade)) %>%  # Remove missing grades
-  mutate(pass = ifelse(course_grade %in% c("A", "B", "C"), 1, 0)) %>%
-  group_by(EnrollmentTerm)
-
-View(terms)
-summary(terms)
-
-terms_passrate = terms %>%
-  group_by(EnrollmentTerm) %>%
+passrate = data %>% mutate(pass = ifelse(Grade %in% c ("A", "B", "C", "P"), 1, 0)) %>%
+  group_by(course_name) %>%
   summarise(
-    total_students = n(),
-    total_passed = sum(pass),
-    pass_rate = total_passed / total_students
+    total = n(),
+    pass= sum(pass),
+    passrate = (pass / total) * 100
   )
-# ALL pass rates per term
-View(terms_passrate)
+passrate
+# View(passrate)
+
+ggplot(passrate, aes(x = reorder(course_name, passrate), y = passrate)) +
+  geom_col(fill = "steelblue") +
+  coord_flip() +
+  labs(title = "Pass Rates by Course", x = "Course Name", y = "Pass Rate (%)") +
+  ylim(0, 100) +
+  theme_minimal()
