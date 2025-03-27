@@ -7,30 +7,26 @@ library(scales)
 
 View(tidy_data)
 
-# 1) What are the pass rates by instructor
-
-passrate = select(tidy_data, InstructorName_A, InstructorName_B, EnrolledCourseGrade_A, EnrolledCourseGrade_B)
-View(passrate)
-
-instructor = passrate %>%
-  pivot_longer(cols = c(EnrolledCourseGrade_A, EnrolledCourseGrade_B),
-               names_to = "course_grade_column",
-               values_to = "course_grade") %>%
-  pivot_longer(cols = c(InstructorName_A, InstructorName_B),
-               names_to = "instructorname_A_or_B",
-               values_to = "instructor_name") %>%
-  filter(!is.na(course_grade)) %>%  # Remove missing grades
-  mutate(pass = ifelse(course_grade %in% c("A", "B", "C"), 1, 0))
-
-View(instructor)
-summary(instructor)
-
-instructor_passrate = instructor %>%
-  group_by(instructor_name) %>%
+# What are the pass rates by instructor
+instructor_passrate = data %>%
+  mutate(pass = ifelse(Grade %in% c("A", "B", "C", "P"), 1, 0)) %>%
+  gather(key = "Instructor_Type", value = "InstructorName", InstructorName) %>%
+  group_by(InstructorName) %>%
   summarise(
     total_students = n(),
     total_passed = sum(pass),
     pass_rate = total_passed / total_students
   )
-# ALL pass rates per instructor
-View(instructor_passrate)
+
+# View the pass rate per instructor
+instructor_passrate
+# View(instructor_passrate)
+
+pic = ggplot(instructor_passrate, aes(x = reorder(InstructorName, pass_rate), y = pass_rate * 100)) +
+  geom_col(fill = "steelblue") +
+  coord_flip() +  
+  labs(title = "Pass Rate by Instructor", x = "Instructor Name", y = "Pass Rate (%)") +
+  theme_minimal() +
+  theme(axis.text.y = element_text(size = 8, color = "white"))
+
+ggsave("instructor_passrate.png", plot = pic, width = 14, height = 8, dpi = 300)  
